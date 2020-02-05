@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Q & A Session Controller</title>
+<script type="text/javascript">
+var Display=window.open('Election_Display.htm','Display','titlebar=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,height=600,width=800,top=0,left=1600');
+</script>
+<script type="text/javascript" src="Q_n_A_CountDown_sess.js"></script>
+<script type="text/javascript" src="Q_n_A_CountDown_sc.js"></script>
+<script type="text/javascript" src="Election_res.js"></script>
+<script type="text/javascript" src="Q_n_A_CountDown_priv.js"></script>
+<script type="text/javascript" src="Q_n_A_Message_Box.js"></script>
+</head>
+<body bgcolor="#ccccee">
+
+<img src="ctu_logo.gif" style="float:left; width: 50px;" onload="sess_init()">
+<div style="position: relative;">
+<div style="position: absolute; top: 30px; display: block; text-align: center; align:center;">
+<table style="width: 100%; align:center;">
+<tbody><tr><td>
+
+	<table style="width: 330px; margin-left: auto; margin-right: auto; text-align:center;">
+	<tr>
+	
+		<td style="color: #f00000; font-family: Arial; font-size: 18pt;">
+			Speaker Clock
+		</td>
+	
+		<td>
+	
+			<span id="sc_PauseIndicator" style="color:blue;">&nbsp;</span><br/>
+			<span id="sc_ReadOut" style="color:  #f00000; font-family: arial, sans-serif; font-size:32pt; font-weight: bold;">1:00</span>
+			<form name="sc_cd">
+				<input type="button" onclick="sc_CountPause()" value="Count" name="sc_cp" >
+				<input type="button" onclick="sc_restart(document.sc_cd.sc_Mins.value,document.sc_cd.sc_Secs.value)" value="Restart" name="sc_Restart" >
+				<br/>
+				<input id="txt2" type="text" value="1" border="0" name="sc_Mins" style="font-size: 12pt; width: 20pt; text-align: right;"><span style="font-size: 12pt;">&nbsp;:</span>
+				<input id="txt3" type="text" value="00" border="0" name="sc_Secs" style="font-size: 12pt; width: 20pt;text-align:left;">
+			</form>
+	
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+
+</td></tr></tbody></table>
+
+</div>
+</div>
+
+</body>
+</html>

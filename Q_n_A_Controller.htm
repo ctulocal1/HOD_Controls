@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Q & A Session Controller</title>
+<script type="text/javascript">
+var Display=window.open('Q_n_A_Display.htm','Display','titlebar=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,height=600,width=800,top=0,left=1600');
+</script>
+<script type="text/javascript" src="Q_n_A_CountDown_sess.js"></script>
+<script type="text/javascript" src="Q_n_A_CountDown_sc.js"></script>
+<script type="text/javascript" src="Q_n_A_CountDown_res.js"></script>
+<script type="text/javascript" src="Q_n_A_CountDown_priv.js"></script>
+<script type="text/javascript" src="Q_n_A_Message_Box.js"></script>
+</head>
+<body bgcolor="#ccccee">
+
+<img src="ctu_logo.gif" style="float:left; width: 50px;" onload="sess_init()">
+<div style="position: relative;">
+<div style="position: absolute; top: 30px; display: block; text-align: center; align:center;">
+<table style="width: 100%; align:center;">
+<tbody><tr><td>
+	<table style="width: 300px; margin-left: auto; margin-right: auto; text-align:center;">
+	<tr>
+
+		<td style="color: #333388; font-family: Arial; font-size: 18pt;">
+			Session Clock
+		</td>
+
+		<td>
+
+			<span id="sess_PauseIndicator" style="color:blue;">&nbsp;</span><br/>
+			<span id="sess_ReadOut" style="color:  #333388; font-family: arial, sans-serif; font-size:32pt; font-weight: bold;">15:00</span>
+			<form name="sess_cd" id="sess_cd">
+				<input type="button" onclick="sess_CountPause()" value="Count" name="sess_cp" id="sess_cp" >
+				<input type="button" onclick="sess_restart(document.sess_cd.sess_Mins.value,document.sess_cd.sess_Secs.value)" value="Restart" name="sess_Restart" id="sess_Restart" >
+				<br/>
+				<input id="txt2" type="text" value="15" border="0" name="sess_Mins" id="sess_Mins" style="font-size: 12pt; width: 20pt; text-align: right;"><span style="font-size: 12pt;">&nbsp;:</span>
+				<input id="txt3" type="text" value="00" border="0" name="sess_Secs" id="sess_Secs" style="font-size: 12pt; width: 20pt;text-align:left;">
+			</form>
+
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+	<table style="width: 330px; margin-left: auto; margin-right: auto; text-align:center;">
+	<tr>
+
+		<td style="color: black; font-family: Arial; font-size: 18pt;">
+			<form name="priv_Mover" id="priv_Mover">
+				<input type="button" onclick="PoO_init()" value="Point of Order" name="PoO_Moved" id="PoO_Moved" >
+				<input type="button" onclick="PoI_init()" value="Point of Information" name="PoI_Moved" id="PoI_Moved" >
+				<input type="button" onclick="PoPP_init()" value="Point of Pers Priv" name="PoPP_Moved" id="PoPP_Moved" >
+				<input type="button" onclick="priv_close()" value="Close Privileged" name="priv_Closer" id="priv_Closer" >
+			</form>
+			Privileged<br>Motion<br>Clock
+		</td>
+
+		<td>
+
+			<span id="priv_PauseIndicator" style="color:blue;">&nbsp;</span><br/>
+			<span id="priv_ReadOut" style="color: black; font-family: arial, sans-serif; font-size:32pt; font-weight: bold;">2:00</span>
+			<form name="priv_cd" id="priv_cd">
+				<input type="button" onclick="priv_CountPause()" value="Count" name="priv_cp" id="priv_cp" >
+				<input type="button" onclick="priv_restart(document.priv_cd.priv_Mins.value,document.priv_cd.priv_Secs.value)" value="Restart" name="privRestart" id="privRestart" >
+				<br/>
+				<input id="txt2" type="text" value="2" border="0" name="priv_Mins" id="priv_Mins" style="font-size: 12pt; width: 20pt; text-align: right;"><span style="font-size: 12pt;">&nbsp;:</span>
+				<input id="txt3" type="text" value="00" border="0" name="priv_Secs" id="priv_Secs" style="font-size: 12pt; width: 20pt;text-align:left;"><br/>
+			</form>
+		</td></tr>
+	</tbody>
+	</table>
+	<table style="width: 330px; margin-left: auto; margin-right: auto; text-align:center;">
+	<tr>
+
+		<td style="color: #f00000; font-family: Arial; font-size: 18pt;">
+			Speaker Clock
+		</td>
+
+		<td>
+
+			<span id="sc_PauseIndicator" style="color:blue;">&nbsp;</span><br/>
+			<span id="sc_ReadOut" style="color:  #f00000; font-family: arial, sans-serif; font-size:32pt; font-weight: bold;">2:00</span>
+			<form name="sc_cd" id="sc_cd">
+				<input type="button" onclick="sc_CountPause()" value="Count" name="sc_cp" id="sc_cp" >
+				<input type="button" onclick="sc_restart(document.sc_cd.sc_Mins.value,document.sc_cd.sc_Secs.value)" value="Restart" name="sc_Restart" id="sc_Restart" >
+				<br/>
+				<input id="txt2" type="text" value="2" border="0" name="sc_Mins" id="sc_Mins" style="font-size: 12pt; width: 20pt; text-align: right;"><span style="font-size: 12pt;">&nbsp;:</span>
+				<input id="txt3" type="text" value="00" border="0" name="sc_Secs" id="sc_Secs" style="font-size: 12pt; width: 20pt;text-align:left;">
+			</form>
+
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+	<table style="width: 300px; margin-left: auto; margin-right: auto; text-align:center;">
+	<tr>
+
+		<td style="color: black; font-family: Arial; font-size: 18pt;">
+			<form name="res_Mover" id="res_Mover">
+				<input type="button" onclick="res_init()" value="Resolution Moved" name="res_Moved" id="res_Moved" >
+			</form>
+			Resolution Clock
+		</td>
+
+		<td>
+
+			<span id="res_PauseIndicator" style="color:blue;">&nbsp;</span><br/>
+			<span id="res_ReadOut" style="color: black; font-family: arial, sans-serif; font-size:32pt; font-weight: bold;">15:00</span>
+			<form name="res_cd" id="res_cd">
+				<input type="button" onclick="res_CountPause()" value="Count" name="res_cp" id="res_cp" >
+				<input type="button" onclick="res_restart(document.res_cd.res_Mins.value,document.res_cd.res_Secs.value)" value="Restart" name="res_Restart" id="res_Restart" >
+				<br/>
+				<input id="txt2" type="text" value="15" border="0" name="res_Mins" id="res_Mins" style="font-size: 12pt; width: 20pt; text-align: right;"><span style="font-size: 12pt;">&nbsp;:</span>
+				<input id="txt3" type="text" value="00" border="0" name="res_Secs" style="font-size: 12pt; width: 20pt;text-align:left;"><br/>
+			</form>
+		</td></tr>
+		<tr><td colspan="2">
+			<form name="res_Cont">
+				<input type="button" onclick="res_text_disp(document.res_Cont.res_Content.value)" value="Post Content" name="res_Content_button" >
+				<textarea name="res_Content" style="border: inset: 3px inset #dddddd; font-family: courier; font-size: 14pt; text-align: left; vertical-align: top; width: 580px; padding: 10px; height: 270px">RESOLVED that </textarea>
+				<input type="button" onclick="res_close()" value="End Resolution" name="res_Close" id="res_Close">
+			</form>
+
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+	<table><tbody><tr>
+		<td valign="top">
+			<form name="BoxCloser" id="BoxCloser">
+				<input type="button" class="resBtn" onclick="BoxClose()" value="Close Box" name="CloseBox" id="CloseBox" >
+			</form>
+		</td>
+		<td valign="top">
+			<form name="TableMover" id="TableMover">
+				<input type="button" class="resBtn" onclick="TableMoved()" value="Move to Table" name="Table" id="Table" >
+				<input type="button" class="resBtn" onclick="TableWins()" value="Table Succeeds" name="TableSucceeds" id="TableSucceeds" >
+				<input type="button" class="resBtn" onclick="TableFails()" value="Table Fails" name="TableDefeated" id="TableDefeated" >
+			</form>
+		</td>
+		<td valign="top">
+			<form name="ResVoter" id="ResVoter">
+				<input type="button" class="resBtn" onclick="ResVote()" value="Vote on Res" name="ResVotes" id="ResVotes" >
+				<input type="button" class="resBtn" onclick="ResAmendedVote()" value="Vote Amended Res" name="ResAmended" id="ResAmended" >
+				<input type="button" class="resBtn" onclick="ResWins()" value="Res Wins" name="ResSucceeds" id="ResSucceeds" >
+				<input type="button" class="resBtn" onclick="ResAmendedWins()" value="Res Amended Wins" name="ResAmendedSucceeds" id="ResAmendedSucceeds" >
+				<input type="button" class="resBtn" onclick="ResFails()" value="Res Fails" name="ResDefeated" id="ResDefeated" >
+				<input type="button" class="resBtn" onclick="ResClose()" value=" Res Close" name="ResCloser" id="ResCloser" >
+			</form>
+		</td>
+		<td valign="top">
+			<form name="AmendVoter" id="AmendVoter">
+				<input type="button" class="resBtn" onclick="AmendVote()" value="Vote on Amendment" name="AmendVotes" id="AmendVotes" >
+				<input type="button" class="resBtn" onclick="AmendAmendedVote()" value="Vote Amended Amendment" name="AmendAmended" id="AmendAmended" >
+				<input type="button" class="resBtn" onclick="AmendWins()" value=" Amendment Wins" name="AmendSucceeds" id="AmendSucceeds" >
+				<input type="button" class="resBtn" onclick="AmendAmendedWins()" value="Amended Amendment Wins" name="AmendAmendedSucceeds" id="AmendAmendedSucceeds" >
+				<input type="button" class="resBtn" onclick="AmendFails()" value="Amendment Fails" name="AmendDefeated" id="AmendDefeated" >
+				<input type="button" class="resBtn" onclick="AmendClose()" value=" Amend Close" name="AmendCloser" id="AmendCloser" >
+				<input type="button" class="resBtn" onclick="AmendCloseAll()" value=" Amend Close All" name="AmendCloserAll" id="AmendCloserAll" >
+			</form>
+		</td>
+		<td valign="top">
+			<form name="Amend2Voter" id="Amend2Voter">
+				<input type="button" class="resBtn" onclick="Amend2Vote()" value="Vote on Am2Am" name="Amend2Votes" id="Amend2Votes" ><br><br>
+				<input type="button" class="resBtn" onclick="Amend2Wins()" value=" Am2Am Wins" name="AmendSucceeds" id="AmendSucceeds" ><br><br>
+				<input type="button" class="resBtn" onclick="Amend2Fails()" value=" Am2Am Fails" name="AmendDefeated" id="AmendDefeated" >
+				<input type="button" class="resBtn" onclick="Amend2Close()" value=" Am2Am Close" name="Amend2Closer" id="Amend2Closer" >
+				<input type="button" class="resBtn" onclick="Amend2CloseAll()" value=" Am2Am Close All" name="Amend2CloserAll" id="Amend2CloserAll" >
+			</form>
+		</td>
+	</tr></tbody></table>
+
+</td></tr></tbody></table>
+
+</div>
+</div>
+
+<script type="text/javascript" src="logger.js"></script>
+
+</body>
+</html>
